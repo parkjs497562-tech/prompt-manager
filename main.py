@@ -56,6 +56,7 @@ def show_menu():
     print("7. 즐겨찾기 목록")
     print("8. 프롬프트 삭제")
     print("9. 프롬프트 수정")
+    print("10. 카테고리별 통계")
     print("0. 종료")
     print("================================")
 
@@ -350,6 +351,29 @@ def edit_prompt():
     print("\n프롬프트가 수정되었습니다!")
 
 
+def show_category_statistics():
+    print("\n=== 카테고리별 통계 ===")
+
+    if not prompts:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    category_counts = {}
+
+    for prompt in prompts:
+        category = prompt["category"]
+
+        if category not in category_counts:
+            category_counts[category] = 0
+
+        category_counts[category] += 1
+
+    for category, count in category_counts.items():
+        print(f"- {category}: {count}개")
+
+    print(f"\n전체 프롬프트: {len(prompts)}개")
+
+
 def main():
     while True:
         show_menu()
@@ -382,6 +406,9 @@ def main():
 
         elif choice == "9":
             edit_prompt()
+
+        elif choice == "10":
+            show_category_statistics()
 
         elif choice == "0":
             print("\n프로그램을 종료합니다.")
