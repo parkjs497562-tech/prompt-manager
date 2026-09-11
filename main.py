@@ -50,6 +50,7 @@ def show_menu():
     print("5. 프롬프트 상세 보기")
     print("6. 즐겨찾기 관리")
     print("7. 즐겨찾기 목록")
+    print("8. 프롬프트 삭제")
     print("0. 종료")
     print("================================")
 
@@ -276,6 +277,28 @@ def show_favorites():
     print(f"\n총 {len(favorites)}개의 즐겨찾기")
 
 
+def delete_prompt():
+    print("\n=== 프롬프트 삭제 ===")
+
+    index = get_prompt_number()
+
+    if index is None:
+        return
+
+    prompt = prompts[index]
+
+    confirm = input(
+        f"'{prompt['title']}' 프롬프트를 삭제하시겠습니까? (y/n): "
+    ).strip().lower()
+
+    if confirm == "y":
+        deleted_title = prompt["title"]
+        prompts.pop(index)
+        print(f"'{deleted_title}' 프롬프트가 삭제되었습니다.")
+    else:
+        print("삭제를 취소했습니다.")
+
+
 def main():
     while True:
         show_menu()
@@ -302,6 +325,9 @@ def main():
 
         elif choice == "7":
             show_favorites()
+
+        elif choice == "8":
+            delete_prompt()
 
         elif choice == "0":
             print("\n프로그램을 종료합니다.")
