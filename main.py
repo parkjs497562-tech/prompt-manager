@@ -16,25 +16,29 @@ prompts = [
         "title": "AI 게임 산업 영향 분석",
         "content": "생성형 AI가 게임 산업에 미치는 영향을 게임 기획자, 개발자, 비즈니스 기획자의 관점에서 분석해주세요.",
         "category": "텍스트 생성",
-        "favorite": False
+        "favorite": False,
+        "views": 0
     },
     {
         "title": "Home Barista 커피 제품 이미지",
         "content": "프리미엄 스페셜티 커피 원두 패키지를 고급스럽고 따뜻한 분위기의 제품 사진으로 생성해주세요.",
         "category": "이미지 생성",
-        "favorite": False
+        "favorite": False,
+        "views": 0
     },
     {
         "title": "베이스온 야구 광고 영상",
         "content": "패배 후 허탈함을 느끼던 야구팬이 다음 경기 선발투수와 팀 전력을 확인하고 다시 기대감을 갖게 되는 10초 광고 영상을 제작해주세요.",
         "category": "영상 생성",
-        "favorite": False
+        "favorite": False,
+        "views": 0
     },
     {
         "title": "메이플스토리 이벤트 알림 자동화",
         "content": "메이플스토리 공식 이벤트 페이지에서 새로운 이벤트를 확인하고 Discord 채널에 자동으로 알림을 보내는 자동화 시스템을 구성해주세요.",
         "category": "자동화",
-        "favorite": False
+        "favorite": False,
+        "views": 0
     }
 ]
 
@@ -81,7 +85,8 @@ def add_prompt():
         "title": title,
         "content": content,
         "category": category,
-        "favorite": False
+        "favorite": False,
+        "views": 0
     }
 
     prompts.append(new_prompt)
@@ -223,12 +228,15 @@ def show_detail():
 
     prompt = prompts[index]
 
+    prompt["views"] += 1
+
     favorite = "⭐" if prompt["favorite"] else "없음"
 
     print("\n--------------------------------")
     print(f"제목: {prompt['title']}")
     print(f"카테고리: {prompt['category']}")
     print(f"즐겨찾기: {favorite}")
+    print(f"조회수: {prompt['views']}")
     print("--------------------------------")
     print("내용:")
     print(prompt["content"])
@@ -316,7 +324,6 @@ def edit_prompt():
     print(f"카테고리: {prompt['category']}")
 
     print("\n수정할 내용을 입력해주세요.")
-    print("변경하지 않으려면 기존 내용을 그대로 입력해주세요.")
 
     while True:
         new_title = input("새 제목: ").strip()
