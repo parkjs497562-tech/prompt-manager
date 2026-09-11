@@ -93,6 +93,8 @@ def select_category():
     for i, category in enumerate(CATEGORIES, 1):
         print(f"{i}) {category}")
 
+    print(f"{len(CATEGORIES) + 1}) 직접 입력")
+
     while True:
         choice = input("선택: ").strip()
 
@@ -101,6 +103,15 @@ def select_category():
 
             if 1 <= number <= len(CATEGORIES):
                 return CATEGORIES[number - 1]
+
+            if number == len(CATEGORIES) + 1:
+                custom_category = input("새 카테고리 입력: ").strip()
+
+                if custom_category:
+                    return custom_category
+
+                print("카테고리는 비워둘 수 없습니다.")
+                continue
 
         print("올바른 카테고리 번호를 입력해주세요.")
 
