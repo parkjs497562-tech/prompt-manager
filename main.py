@@ -51,6 +51,7 @@ def show_menu():
     print("6. 즐겨찾기 관리")
     print("7. 즐겨찾기 목록")
     print("8. 프롬프트 삭제")
+    print("9. 프롬프트 수정")
     print("0. 종료")
     print("================================")
 
@@ -299,6 +300,49 @@ def delete_prompt():
         print("삭제를 취소했습니다.")
 
 
+def edit_prompt():
+    print("\n=== 프롬프트 수정 ===")
+
+    index = get_prompt_number()
+
+    if index is None:
+        return
+
+    prompt = prompts[index]
+
+    print("\n현재 정보")
+    print(f"제목: {prompt['title']}")
+    print(f"내용: {prompt['content']}")
+    print(f"카테고리: {prompt['category']}")
+
+    print("\n수정할 내용을 입력해주세요.")
+    print("변경하지 않으려면 기존 내용을 그대로 입력해주세요.")
+
+    while True:
+        new_title = input("새 제목: ").strip()
+
+        if new_title:
+            break
+
+        print("제목은 비워둘 수 없습니다.")
+
+    while True:
+        new_content = input("새 내용: ").strip()
+
+        if new_content:
+            break
+
+        print("내용은 비워둘 수 없습니다.")
+
+    new_category = select_category()
+
+    prompt["title"] = new_title
+    prompt["content"] = new_content
+    prompt["category"] = new_category
+
+    print("\n프롬프트가 수정되었습니다!")
+
+
 def main():
     while True:
         show_menu()
@@ -328,6 +372,9 @@ def main():
 
         elif choice == "8":
             delete_prompt()
+
+        elif choice == "9":
+            edit_prompt()
 
         elif choice == "0":
             print("\n프로그램을 종료합니다.")
